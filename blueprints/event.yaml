@@ -68,10 +68,20 @@ form:
               type: text
               label: Location
               help: Where is this event located? If you enter an address it will be geocoded below. 
+            header.event.address:
+              type: text
+              label: Address
+              placeholder: Raleigh, N.C.
             header.event.coordinates:
               type: text
               label: Coordinates
               placeholder: Latitude, Longitude
               help: These are automatically generated from the location field.
+            header.event.city:
+              type: hidden
+            header.event.zip:
+              type: hidden
+            header.event.country:
+              type: hidden
 
 

@@ -233,6 +233,32 @@ class EventsProcessor
 			$page->taxonomy($newTaxonomy);
 			$header->taxonomy = $newTaxonomy;
 
+			if ( isset( $header->event['repeat'] ) ) {
+				$repeat_display = [];
+
+				$repeats = str_split( $header->event['repeat'] );
+
+				$legend['M'] = 'Monday';
+				$legend['T'] = 'Tuesday';
+				$legend['W'] = 'Wednesday';
+				$legend['R'] = 'Thursday';
+				$legend['F'] = 'Friday';
+				$legend['S'] = 'Saturday';
+				$legend['U'] = 'Sunday';
+
+				$week[1] = 'first';
+				$week[2] = 'second';
+				$week[3] = 'third';
+				$week[4] = 'fourth';
+
+				foreach ( $repeats as $repeat ) {
+					$repeat_display[] = $legend[$repeat];
+				}
+
+				$header->event['repeat_week'] = $week[$carbonEvent['start']->weekOfMonth];
+				$header->event['repeat_display'] = implode( ', ', $repeat_display );
+			}
+
 			// add the page to the taxonomy map
 			$this->taxonomy->addTaxonomy($page, $newTaxonomy);
 		}

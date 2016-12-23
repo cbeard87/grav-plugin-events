@@ -459,12 +459,16 @@ $event-border-radius: 					4px !default;
 		@include row();
 
 		.left-column {
-			@include span-columns(2);
+			@include span-columns(3 of 13);
+
+			.left-column-inner {
+				margin-right: 1rem;
+			}
 
 			.event-date {
 				text-align: right;
 				color: #555;
-				margin: 1.75rem 1rem 0 0;
+				margin-top: 1.75rem;
 				display: block;
 
 				.day {
@@ -493,15 +497,31 @@ $event-border-radius: 					4px !default;
 				}
 			}
 
+			.event-location {
+				font-weight: bold;
+				text-align: right;
+				margin: 1.5rem 0 0;
+			}
+
+			.event-address {
+				text-align: right;
+				margin: 0 0 0.5rem;
+				font-size: 0.85rem;
+				line-height: 1;
+			}
+
+			.event-image {
+
+			}
+
 			.categories {
 				text-align: right;
-				margin-right: 1rem;
 				margin-top: 1.5rem;
 			}
 
 		}
 		.right-column {
-			@include span-columns(10);
+			@include span-columns(10 of 13);
 
 			.event-content {
 

@@ -106,7 +106,7 @@ form:
             event_item.month:
               type: text
               label: Date Box Month
-              default: M
+              default: F
             event_item.start_time:
               type: text
               label: Date Box Start Time

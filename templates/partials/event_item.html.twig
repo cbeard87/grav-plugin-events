@@ -11,25 +11,43 @@
 
     <section class="event-content">
       <div class="left-column">
-        <time class="event-date" datetime="{{ page.date|date("c") }}">
-          <span class="day">{{ page.header.event.start|date(config.plugins.events.event_item.day) }}</span>
-          <span class="month">{{ page.header.event.start|date(config.plugins.events.event_item.month) }}</span>
-          <span class="time">
-              {{ page.header.event.start|date(config.plugins.events.event_item.start_time) }}&ndash;{{ page.header.event.end|date(config.plugins.events.event_item.end_time) }}
-          </span>
-          <span class="year">{{ page.header.event.start|date("Y") }}</span>
-        </time>
+        <div class="left-column-inner">
 
-        {% if page.taxonomy.category %}
-        <div class="categories">
-          <span class="event-tags">
-              {% for category in page.taxonomy.category %}
-              <a href="{{ event.url|rtrim('/') }}/category{{ config.system.param_sep }}{{ category }}">{{ category }}</a>
-              {% endfor %}
-          </span>
+          <time class="event-date" datetime="{{ page.date|date("c") }}">
+            <span class="day">{{ page.header.event.start|date(config.plugins.events.event_item.day) }}</span>
+            <span class="month">{{ page.header.event.start|date(config.plugins.events.event_item.month) }}</span>
+            <span class="time">
+                {{ page.header.event.start|date(config.plugins.events.event_item.start_time) }}&ndash;{{ page.header.event.end|date(config.plugins.events.event_item.end_time) }}
+            </span>
+            <span class="year">{{ page.header.event.start|date("Y") }}</span>
+          </time>
+          
+
+          {% if header.event.location != null %}
+            <p class="event-location">{{ header.event.location }}</p>
+          {% endif %}
+
+          {% if header.event.address != null %}
+            <p class="event-address">{{ header.event.address }}</p>
+          {% endif %}
+
+          {% if header.event.coordinates != null %}
+            {% set map_url = 'https://maps.googleapis.com/maps/api/staticmap?center=' ~ (header.event.coordinates|urlencode) ~ '&markers=color:blue|' ~ (header.event.coordinates|urlencode) ~ '&zoom=14&size=300x200&sensor=false' %}
+            <a href="https://www.google.com/maps/place/{{ header.event.address|urlencode }}" target="_blank" title="{{ header.event.address }}"><img src="{{ map_url }}" alt="{{ header.event.location }}" class="event-map" /></a>
+          {% endif %}
+
+          {% if page.taxonomy.category %}
+          <div class="categories">
+            <span class="event-tags">
+                {% for category in page.taxonomy.category %}
+                <a href="{{ event.url|rtrim('/') }}/category{{ config.system.param_sep }}{{ category }}">{{ category }}</a>
+                {% endfor %}
+            </span>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
       </div>
+
       <div class="right-column">
 
         {% if single == true %}{# individual content page #}

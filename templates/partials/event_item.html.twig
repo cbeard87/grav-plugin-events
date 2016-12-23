@@ -11,6 +11,7 @@
 
     <section class="event-content">
       <div class="left-column">
+
         <time class="event-date" datetime="{{ page.date|date("c") }}">
           <span class="day">{{ page.header.event.start|date(config.plugins.events.event_item.day) }}</span>
           <span class="month">{{ page.header.event.start|date(config.plugins.events.event_item.month) }}</span>
@@ -29,6 +30,7 @@
           </span>
         </div>
         {% endif %}
+        
       </div>
       <div class="right-column">
 

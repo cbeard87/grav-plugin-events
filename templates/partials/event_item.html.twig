@@ -4,7 +4,9 @@
       
       {% set image = page.media.images|first %}
       {% if image != null %}
-          {{ image.cropZoom(960,280).html(null, page.title) }}
+        {% if single != true %}<a href="{{ page.url }}">{% endif %}
+          {{ image.cropZoom(960,280).html(null, page.title, 'event-item-header-image') }}
+        {% if single != true %}</a>{% endif %}
       {% endif %}
 
     </header>

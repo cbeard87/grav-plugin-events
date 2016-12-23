@@ -469,6 +469,7 @@ $event-border-radius: 					4px !default;
 				text-align: right;
 				color: #555;
 				margin-top: 1.75rem;
+				margin-bottom: 1.75rem;
 				display: block;
 
 				.day {
@@ -497,10 +498,14 @@ $event-border-radius: 					4px !default;
 				}
 			}
 
+			.event-location-box {
+				margin-bottom: 1.75rem;
+			}
+
 			.event-location {
 				font-weight: bold;
 				text-align: right;
-				margin: 1.5rem 0 0;
+				margin: 0;
 			}
 
 			.event-address {
@@ -511,12 +516,11 @@ $event-border-radius: 					4px !default;
 			}
 
 			.event-image {
-
+				
 			}
 
 			.categories {
 				text-align: right;
-				margin-top: 1.5rem;
 			}
 
 		}

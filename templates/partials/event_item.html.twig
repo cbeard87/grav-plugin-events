@@ -4,40 +4,65 @@
       
       {% set image = page.media.images|first %}
       {% if image != null %}
-          {{ image.cropZoom(960,280).html }}
+        {% if single != true %}<a href="{{ page.url }}">{% endif %}
+          {{ image.cropZoom(960,280).html(null, page.title, 'event-item-header-image') }}
+        {% if single != true %}</a>{% endif %}
       {% endif %}
 
     </header>
 
     <section class="event-content">
       <div class="left-column">
+        <div class="left-column-inner">
 
-        <time class="event-date" datetime="{{ page.date|date("c") }}">
-          <span class="day">{{ page.header.event.start|date(config.plugins.events.event_item.day) }}</span>
-          <span class="month">{{ page.header.event.start|date(config.plugins.events.event_item.month) }}</span>
-          <span class="time">
-              {{ page.header.event.start|date(config.plugins.events.event_item.start_time) }}&ndash;{{ page.header.event.end|date(config.plugins.events.event_item.end_time) }}
-          </span>
-          <span class="year">{{ page.header.event.start|date("Y") }}</span>
-        </time>
+          <time class="event-date" datetime="{{ page.date|date("c") }}">
+            <span class="day">{{ page.header.event.start|date(config.plugins.events.event_item.day) }}</span>
+            <span class="month">{{ page.header.event.start|date(config.plugins.events.event_item.month) }}</span>
+            <span class="time">
+                {{ page.header.event.start|date(config.plugins.events.event_item.start_time) }}&ndash;{{ page.header.event.end|date(config.plugins.events.event_item.end_time) }}
+            </span>
+            <span class="year">{{ page.header.event.start|date("Y") }}</span>
+          </time>
+          
+          {% set location = header.event.location %}
+          {% set address = header.event.address %}
+          {% set coordinates = header.event.coordinates %}
+          
+          {% if location != null or address != null or coordinates != null %}
+            <div class="event-location-box">
+              {% if location != null %}
+                <p class="event-location">{{ location }}</p>
+              {% endif %}
 
-        {% if page.taxonomy.category %}
-        <div class="categories">
-          <span class="event-tags">
-              {% for category in page.taxonomy.category %}
-              <a href="{{ event.url|rtrim('/') }}/category{{ config.system.param_sep }}{{ category }}">{{ category }}</a>
-              {% endfor %}
-          </span>
+              {% if address != null %}
+                <p class="event-address">{{ address }}</p>
+              {% endif %}
+
+              {% if coordinates != null %}
+                {% set map_url = 'https://maps.googleapis.com/maps/api/staticmap?center=' ~ (coordinates|urlencode) ~ '&markers=color:blue|' ~ (coordinates|urlencode) ~ '&zoom=14&size=300x200&sensor=false' %}
+                <a href="https://www.google.com/maps/place/{{ address|urlencode }}" target="_blank" title="{{ address }}"><img src="{{ map_url }}" alt="{{ location }}" class="event-map" /></a>
+              {% endif %}
+            </div>
+          {% endif %}
+
+          {% if page.taxonomy.category %}
+          <div class="categories">
+            <span class="event-tags">
+                {% for category in page.taxonomy.category %}
+                <a href="{{ event.url|rtrim('/') }}/category{{ config.system.param_sep }}{{ category }}">{{ category }}</a>
+                {% endfor %}
+            </span>
+          </div>
+          {% endif %}
         </div>
-        {% endif %}
-        
       </div>
+
       <div class="right-column">
 
         {% if single == true %}{# individual content page #}
           <h2 class="event-title">{{ page.title }}</h2>
           <div class="event-content">{{ page.content }}</div>
-           {% include 'partials/event_meta.html.twig' with { 'page': page } %}
+           {#% include 'partials/event_meta.html.twig' with { 'page': page } %#}
 
         {% else %}{# main listing page #}          
           <h2 class="event-title"><a href="{{ page.url }}">{{ page.title }}</a></h2>

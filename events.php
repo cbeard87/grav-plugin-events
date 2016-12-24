@@ -315,7 +315,7 @@ class EventsPlugin extends Plugin
 			$header = $obj->header();
 
 			// check for location information
-    	if ( isset( $header->event['address'] ) && ! isset( $header->event['coordinates'] ) ) {
+    	if ( isset( $header->event['address'] ) ) {
 	    	$location = $header->event['address'];
 
 	    	// build a url

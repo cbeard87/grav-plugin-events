@@ -59,16 +59,16 @@ use Events\EventsProcessor;
  * ```
  *
  * If you use the Admin pluin, the events plugin will automatically geo-decode
- * the location field to a set of coordinates so that you don't have too.
+ * the location field to a set of coordinates so that you don't have to.
  *
  * PHP version 5.6+
  *
  * @package    Events
- * @author     Kaleb Heitzman <kalebheitzman@gmail.com>
+ * @author     Kaleb Heitzman <brandrco@gmail.com>
  * @copyright  2016 Kaleb Heitzman
  * @license    https://opensource.org/licenses/MIT MIT
  * @version    1.0.15 Major Refactor
- * @link       https://github.com/kalebheitzman/grav-plugin-events
+ * @link       https://github.com/brandrco/grav-plugin-events
  * @since      1.0.0 Initial Release
  */
 class EventsPlugin extends Plugin

@@ -4,6 +4,7 @@
 	* Added the ability to add date exceptions to events
 1 [](#improved)
 	* More intuitive calendar navigation
+	* Improved calendar and event templates 
 
 # v1.0.15
 ## 10/02/2016

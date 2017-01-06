@@ -1,15 +1,8 @@
 <article class="event-article">
 
-    <header class="event-header">
-      
-      {% set image = page.media.images|first %}
-      {% if image != null %}
-        {% if single != true %}<a href="{{ page.url }}">{% endif %}
-          {{ image.cropZoom(960,280).html(null, page.title, 'event-item-header-image') }}
-        {% if single != true %}</a>{% endif %}
-      {% endif %}
+    
 
-    </header>
+    {% include 'partials/event_item_header.html.twig' %}
 
     <section class="event-content">
       <div class="left-column">
@@ -38,7 +31,7 @@
                 <p class="event-address">{{ address }}</p>
               {% endif %}
 
-              {% if coordinates != null %}
+              {% if coordinates != null and coordinates != ',' and address != null %}
                 {% set map_url = 'https://maps.googleapis.com/maps/api/staticmap?center=' ~ (coordinates|urlencode) ~ '&markers=color:blue|' ~ (coordinates|urlencode) ~ '&zoom=14&size=300x200&sensor=false' %}
                 <a href="https://www.google.com/maps/place/{{ address|urlencode }}" target="_blank" title="{{ address }}"><img src="{{ map_url }}" alt="{{ location }}" class="event-map" /></a>
               {% endif %}
@@ -63,6 +56,8 @@
           <h2 class="event-title">{{ page.title }}</h2>
           <div class="event-content">{{ page.content }}</div>
            {#% include 'partials/event_meta.html.twig' with { 'page': page } %#}
+           {# allows some customizations #}
+           {% include 'partials/event_item_footer.html.twig' %}
 
         {% else %}{# main listing page #}          
           <h2 class="event-title"><a href="{{ page.url }}">{{ page.title }}</a></h2>

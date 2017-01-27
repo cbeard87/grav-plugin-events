@@ -25,11 +25,11 @@ form:
       fields:
         setup:
           type: tab
-          title: Processing
+          title: Customize
           fields:
-            processing:
+            customize:
               type: section
-              title: Processing
+              title: Customize
               underline: true
             event_template_types:
               type: text
@@ -64,6 +64,15 @@ form:
               type: text
               label: Events Collection
               default: "'@page': '/events'"
+
+        api:
+          type: tab
+          title: APIs
+          fields:
+            google_maps:
+              type: text
+              label: Google Maps API Key
+              placeholder: Enter your api key
 
         formatting:
           type: tab

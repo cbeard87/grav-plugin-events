@@ -31,8 +31,9 @@
                 <p class="event-address">{{ address }}</p>
               {% endif %}
 
+
               {% if coordinates != null and coordinates != ',' and address != null %}
-                {% set map_url = 'https://maps.googleapis.com/maps/api/staticmap?center=' ~ (coordinates|urlencode) ~ '&markers=color:blue|' ~ (coordinates|urlencode) ~ '&zoom=14&size=300x200&sensor=false' %}
+                {% set map_url = 'https://maps.googleapis.com/maps/api/staticmap?key=' ~ config.plugins.events.google_maps ~ '&center=' ~ (coordinates|urlencode) ~ '&markers=color:blue|' ~ (coordinates|urlencode) ~ '&zoom=14&size=300x200&sensor=false' %}
                 <a href="https://www.google.com/maps/place/{{ address|urlencode }}" target="_blank" title="{{ address }}"><img src="{{ map_url }}" alt="{{ location }}" class="event-map" /></a>
               {% endif %}
             </div>

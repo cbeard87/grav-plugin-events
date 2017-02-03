@@ -425,13 +425,22 @@ $event-border-radius: 				4px !default;
 /* html5 .event-container element */
 .event-container {
 	@include outer-container();
+	padding: 0 1.5rem;
+
+	@include media($tablet) {
+		padding: 0 0;
+	}
 
 	.event-listing {
-		@include span-columns(8);
+		@include media($tablet) {
+			@include span-columns(8);
+		}
 	}
 
 	.events-sidebar {
-		@include span-columns(4);
+		@include media($tablet) {
+			@include span-columns(4);
+		}
 
 		.event-tags {
 			padding: 0;
@@ -460,20 +469,33 @@ $event-border-radius: 				4px !default;
 
 	.event-content {
 		@include row();
-
+		
 		.left-column {
-			@include span-columns(3 of 13);
-
-			.left-column-inner {
-				margin-right: 1rem;
+			@include media($tablet) {
+				@include span-columns(3 of 13);
 			}
 
+			.left-column-inner {
+				@include media($tablet) {
+					margin-right: 1rem;					
+				}
+			}
+
+			.event-date-mobile {
+				@include media($tablet) {
+					display: none;
+				}
+			}
 			.event-date {
-				text-align: right;
-				color: #555;
-				margin-top: 1.75rem;
-				margin-bottom: 1.75rem;
-				display: block;
+				display: none;
+
+				@include media($tablet) {
+					text-align: right;
+					color: #555;
+					margin-top: 1.75rem;
+					margin-bottom: 1.75rem;
+					display: block;					
+				}
 
 				.day {
 					display: block;
@@ -507,8 +529,11 @@ $event-border-radius: 				4px !default;
 
 			.event-location {
 				font-weight: bold;
-				text-align: right;
 				margin: 0;
+
+				@include media($tablet) {
+					text-align: right;	
+				}
 			}
 
 			.event-address {
@@ -523,12 +548,18 @@ $event-border-radius: 				4px !default;
 			}
 
 			.categories {
-				text-align: right;
+				display:none;
+
+				@include media($tablet) {
+					text-align: right;					
+				}
 			}
 
 		}
 		.right-column {
-			@include span-columns(10 of 13);
+			@include media($tablet) {
+				@include span-columns(10 of 13);				
+			}
 
 			.event-content {
 
